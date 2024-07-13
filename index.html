@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>料金表</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.2.0/exceljs.min.js"></script>
 </head>
 <body>
     <h1>料金表</h1>
-    <table>
+    <table id="pricing-table">
         <tr>
             <th>サービス</th>
             <th>基本料金</th>
@@ -28,5 +29,33 @@
             <td>47000円</td>
         </tr>
     </table>
+    <button onclick="exportToExcel()">エクセルに出力</button>
+
+    <script>
+        function exportToExcel() {
+            const workbook = new ExcelJS.Workbook();
+            const worksheet = workbook.addWorksheet('料金表');
+            
+            const table = document.getElementById('pricing-table');
+            for (let i = 0; i < table.rows.length; i++) {
+                const row = table.rows[i];
+                const rowData = [];
+                for (let j = 0; j < row.cells.length; j++) {
+                    rowData.push(row.cells[j].innerText);
+                }
+                worksheet.addRow(rowData);
+            }
+
+            workbook.xlsx.writeBuffer().then((data) => {
+                const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+                const url = window.URL.createObjectURL(blob);
+                const anchor = document.createElement('a');
+                anchor.href = url;
+                anchor.download = '料金表.xlsx';
+                anchor.click();
+                window.URL.revokeObjectURL(url);
+            });
+        }
+    </script>
 </body>
 </html>
