@@ -3,41 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>料金表</title>
+    <title>月別料金表</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.2.0/exceljs.min.js"></script>
 </head>
 <body>
-    <h1>料金表</h1>
+    <h1>月別料金表</h1>
     <table id="pricing-table">
-        <tr>
-            <th>サービス</th>
-            <th>基本料金</th>
-            <th>週末料金</th>
-            <th>休日料金</th>
-        </tr>
-        <tr>
-            <td>サービスA</td>
-            <td>38000円</td>
-            <td>42000円</td>
-            <td>45000円</td>
-        </tr>
-        <tr>
-            <td>サービスB</td>
-            <td>40000円</td>
-            <td>44000円</td>
-            <td>47000円</td>
-        </tr>
+        <thead>
+            <tr>
+                <th>日付</th>
+                <th>AM</th>
+                <th>AMフリー</th>
+                <th>PMフリー</th>
+                <th>終日</th>
+            </tr>
+        </thead>
+        <tbody>
+            <script>
+                const daysInMonth = 31; // 月の日数を設定
+                for (let day = 1; day <= daysInMonth; day++) {
+                    document.write(`
+                        <tr>
+                            <td>${day}日</td>
+                            <td>価格未設定</td>
+                            <td>価格未設定</td>
+                            <td>価格未設定</td>
+                            <td>価格未設定</td>
+                        </tr>
+                    `);
+                }
+            </script>
+        </tbody>
     </table>
     <button onclick="exportToExcel()">エクセルに出力</button>
 
     <script>
         function exportToExcel() {
             const workbook = new ExcelJS.Workbook();
-            const worksheet = workbook.addWorksheet('料金表');
+            const worksheet = workbook.addWorksheet('月別料金表');
             
+            // テーブルヘッダーの追加
+            worksheet.addRow(['日付', 'AM', 'AMフリー', 'PMフリー', '終日']);
+            
+            // テーブルデータの追加
             const table = document.getElementById('pricing-table');
-            for (let i = 0; i < table.rows.length; i++) {
+            for (let i = 1; i < table.rows.length; i++) {
                 const row = table.rows[i];
                 const rowData = [];
                 for (let j = 0; j < row.cells.length; j++) {
@@ -46,12 +57,13 @@
                 worksheet.addRow(rowData);
             }
 
+            // エクセルファイルのダウンロード
             workbook.xlsx.writeBuffer().then((data) => {
                 const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
                 const url = window.URL.createObjectURL(blob);
                 const anchor = document.createElement('a');
                 anchor.href = url;
-                anchor.download = '料金表.xlsx';
+                anchor.download = '月別料金表.xlsx';
                 anchor.click();
                 window.URL.revokeObjectURL(url);
             });
