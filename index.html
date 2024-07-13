@@ -15,45 +15,45 @@
                 <tr>
                     <th>日付</th>
                     <th>終日フリー</th>
+                    <th>PMフリー</th>
                     <th>AMフリー</th>
                     <th>AM指定</th>
-                    <th>PMフリー</th>
                 </tr>
             </thead>
             <tbody>
                 <script>
                     const pricingData = [
-                        { date: "2024-08-01", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-02", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-03", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-04", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-05", allDay: 25600, amFree: 35600, am: 40600, pmFree: 30600 },
-                        { date: "2024-08-06", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-07", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-08", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-09", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-10", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-11", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-12", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-13", allDay: 30000, amFree: 42000, am: 48000, pmFree: 36000 },
-                        { date: "2024-08-14", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-15", allDay: 25600, amFree: 35600, am: 40600, pmFree: 30600 },
-                        { date: "2024-08-16", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-17", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-18", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-19", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-20", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-21", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-22", allDay: 25600, amFree: 35600, am: 40600, pmFree: 30600 },
-                        { date: "2024-08-23", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-24", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-25", allDay: 25200, amFree: 35200, am: 40200, pmFree: 30200 },
-                        { date: "2024-08-26", allDay: 25400, amFree: 35400, am: 40400, pmFree: 30400 },
-                        { date: "2024-08-27", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-28", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-29", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-30", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 },
-                        { date: "2024-08-31", allDay: 25000, amFree: 35000, am: 40000, pmFree: 30000 }
+                        { date: "2024-08-01", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-02", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-03", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-04", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-05", allDay: 25600, pmFree: 27600, amFree: 29600, am: 31600 },
+                        { date: "2024-08-06", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-07", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-08", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-09", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-10", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-11", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-12", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-13", allDay: 30000, pmFree: 32000, amFree: 34000, am: 36000 },
+                        { date: "2024-08-14", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-15", allDay: 25600, pmFree: 27600, amFree: 29600, am: 31600 },
+                        { date: "2024-08-16", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-17", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-18", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-19", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-20", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-21", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-22", allDay: 25600, pmFree: 27600, amFree: 29600, am: 31600 },
+                        { date: "2024-08-23", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-24", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-25", allDay: 25200, pmFree: 27200, amFree: 29200, am: 31200 },
+                        { date: "2024-08-26", allDay: 25400, pmFree: 27400, amFree: 29400, am: 31400 },
+                        { date: "2024-08-27", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-28", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-29", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-30", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 },
+                        { date: "2024-08-31", allDay: 25000, pmFree: 27000, amFree: 29000, am: 31000 }
                     ];
 
                     pricingData.forEach(data => {
@@ -61,9 +61,9 @@
                             <tr>
                                 <td>${data.date}</td>
                                 <td>${data.allDay}円</td>
+                                <td>${data.pmFree}円</td>
                                 <td>${data.amFree}円</td>
                                 <td>${data.am}円</td>
-                                <td>${data.pmFree}円</td>
                             </tr>
                         `);
                     });
@@ -78,7 +78,7 @@
             const worksheet = workbook.addWorksheet('月別料金表');
             
             // テーブルヘッダーの追加
-            worksheet.addRow(['日付', '終日フリー', 'AMフリー', 'AM指定', 'PMフリー']);
+            worksheet.addRow(['日付', '終日フリー', 'PMフリー', 'AMフリー', 'AM指定']);
             
             // テーブルデータの追加
             const table = document.getElementById('pricing-table');
