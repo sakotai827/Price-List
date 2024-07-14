@@ -19,16 +19,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    augBtn.addEventListener('click', function() {
+    function fetchData(month) {
         fetch('pricingData.json')
             .then(response => response.json())
-            .then(data => renderTable(data[0]));
+            .then(data => renderTable(data[month]))
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                alert('料金データの読み込みに失敗しました。');
+            });
+    }
+
+    augBtn.addEventListener('click', function() {
+        fetchData('august');
     });
 
     sepBtn.addEventListener('click', function() {
-        fetch('pricingData.json')
-            .then(response => response.json())
-            .then(data => renderTable(data[1]));
+        fetchData('september');
     });
 
     exportBtn.addEventListener('click', function() {
