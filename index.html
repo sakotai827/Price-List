@@ -11,26 +11,27 @@
     <div class="container">
         <h1>月別料金表</h1>
         <div class="controls">
-            <select id="month-select">
-                <option value="08">8月</option>
-                <option value="09">9月</option>
-            </select>
-        </div>
-        <table id="pricing-table">
-            <thead>
-                <tr>
-                    <th>日付</th>
-                    <th>終日フリー</th>
-                    <th>PMフリー</th>
-                    <th>AMフリー</th>
-                    <th>AM指定</th>
-                </tr>
-            </thead>
-            <tbody id="pricing-body">
-                <!-- データをJavaScriptで埋め込みます -->
-            </tbody>
-        </table>
-        <button onclick="exportToExcel()">エクセルに出力</button>
+            <select id="month-select"> 
+                :::controls
+                <button id="aug-btn">8月</button>
+                <button id="sep-btn">9月</button>
+                :::
+                
+                <table id="pricing-table">
+                  <thead>
+                    <tr>
+                      <th>日付</th>
+                      <th>終日フリー</th>
+                      <th>PMフリー</th>
+                      <th>AMフリー</th>
+                      <th>AM指定</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+                
+                <button id="export-btn">エクセルに出力</button>
+                :::
     </div>
     <script>
         async function loadPricingData(month) {
