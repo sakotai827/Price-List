@@ -5,94 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>月別料金表</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.2.0/exceljs.min.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>月別料金表</h1>
         <div class="controls">
-            <select id="month-select"> 
-                :::controls
-                <button id="aug-btn">8月</button>
-                <button id="sep-btn">9月</button>
-                :::
-                
-                <table id="pricing-table">
-                  <thead>
-                    <tr>
-                      <th>日付</th>
-                      <th>終日フリー</th>
-                      <th>PMフリー</th>
-                      <th>AMフリー</th>
-                      <th>AM指定</th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
-                </table>
-                
-                <button id="export-btn">エクセルに出力</button>
-                :::
+            <button id="aug-btn">8月</button>
+            <button id="sep-btn">9月</button>
+        </div>
+        <table id="pricing-table">
+            <thead>
+                <tr>
+                    <th>日付</th>
+                    <th>終日フリー</th>
+                    <th>PMフリー</th>
+                    <th>AMフリー</th>
+                    <th>AM指定</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button id="export-btn">エクセルに出力</button>
     </div>
-    <script>
-        async function loadPricingData(month) {
-            const response = await fetch('pricingData.json');
-            const pricingData = await response.json();
-            const filteredData = pricingData.filter(data => data.date.startsWith(`2024-${month}`));
-            const tbody = document.getElementById('pricing-body');
-            tbody.innerHTML = '';
-            filteredData.forEach(data => {
-                const row = `
-                    <tr>
-                        <td>${data.date}</td>
-                        <td>${data.allDay}円</td>
-                        <td>${data.pmFree}円</td>
-                        <td>${data.amFree}円</td>
-                        <td>${data.am}円</td>
-                    </tr>
-                `;
-                tbody.innerHTML += row;
-            });
-        }
-
-        function updatePricingTable() {
-            const month = document.getElementById('month-select').value;
-            loadPricingData(month);
-        }
-
-        document.getElementById('month-select').addEventListener('change', updatePricingTable);
-
-        function exportToExcel() {
-            const workbook = new ExcelJS.Workbook();
-            const worksheet = workbook.addWorksheet('月別料金表');
-            
-            // テーブルヘッダーの追加
-            worksheet.addRow(['日付', '終日フリー', 'PMフリー', 'AMフリー', 'AM指定']);
-            
-            // テーブルデータの追加
-            const table = document.getElementById('pricing-table');
-            for (let i = 1; i < table.rows.length; i++) {
-                const row = table.rows[i];
-                const rowData = [];
-                for (let j = 0; j < row.cells.length; j++) {
-                    rowData.push(row.cells[j].innerText);
-                }
-                worksheet.addRow(rowData);
-            }
-
-            // エクセルファイルのダウンロード
-            workbook.xlsx.writeBuffer().then((data) => {
-                const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-                const url = window.URL.createObjectURL(blob);
-                const anchor = document.createElement('a');
-                anchor.href = url;
-                anchor.download = '月別料金表.xlsx';
-                anchor.click();
-                window.URL.revokeObjectURL(url);
-            });
-        }
-
-        // 初期データの読み込み
-        updatePricingTable();
-      <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
