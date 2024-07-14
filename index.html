@@ -11,11 +11,6 @@
     <div class="container">
         <h1>月別料金表</h1>
         <div class="controls">
-            <select id="year-select">
-                <option value="2024">2024年</option>
-                <option value="2025">2025年</option>
-                <option value="2026">2026年</option>
-            </select>
             <select id="month-select">
                 <option value="08">8月</option>
                 <option value="09">9月</option>
@@ -39,10 +34,10 @@
         <button onclick="exportToExcel()">エクセルに出力</button>
     </div>
     <script>
-        async function loadPricingData(year, month) {
+        async function loadPricingData(month) {
             const response = await fetch('pricingData.json');
             const pricingData = await response.json();
-            const filteredData = pricingData.filter(data => data.date.startsWith(`${year}-${month}`));
+            const filteredData = pricingData.filter(data => data.date.startsWith(`2024-${month}`));
             const tbody = document.getElementById('pricing-body');
             tbody.innerHTML = '';
             filteredData.forEach(data => {
@@ -60,12 +55,10 @@
         }
 
         function updatePricingTable() {
-            const year = document.getElementById('year-select').value;
             const month = document.getElementById('month-select').value;
-            loadPricingData(year, month);
+            loadPricingData(month);
         }
 
-        document.getElementById('year-select').addEventListener('change', updatePricingTable);
         document.getElementById('month-select').addEventListener('change', updatePricingTable);
 
         function exportToExcel() {
